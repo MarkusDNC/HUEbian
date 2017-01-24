@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-jan-24, 14:45:33
+    Author     : Markus
+*/
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url('Roboto-Bold.ttf');
+}
+
+.root {
+        -fx-background-image: url("background.jpg");
+}
+
+#ctrlbutton {
+    -fx-font-family: "Roboto Bold";
+    -fx-font-size: 16;
+    -fx-background-color:rgb(255,255,255,0.9);
+    -fx-background-radius: 15;
+    -fx-padding: 1,1,1,1;
+}
+
+#buttonOn {
+    -fx-font-family: "Roboto Bold";
+    -fx-font-size: 16;
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 1,1,1,1;
+}
+
+#buttonOff {
+    -fx-font-family: "Roboto Bold";
+    -fx-font-size: 16;
+    -fx-text-fill:dimgray;
+    -fx-background-color:rgb(220,220,220,0.9);
+    -fx-background-radius: 15;
+    -fx-padding: 1,1,1,1;
+}
