@@ -18,14 +18,15 @@ package huebian;
 
 import javafx.scene.control.Button;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -42,14 +43,22 @@ public class HUEbian extends Application {
         
         BorderPane borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10, 20, 10, 20));
-        Button btnSettings = new Button("");
-        btnSettings.setId("imageButton");
-        btnSettings.setMaxHeight(48);
-        btnSettings.setMinHeight(48);
-        btnSettings.setMaxWidth(48);
-        btnSettings.setMinWidth(48);
-       
-        borderPane.setBottom(btnSettings);
+        
+        GridPane bottomGrid = new GridPane();
+        bottomGrid.setAlignment(Pos.CENTER);
+        bottomGrid.setHgap(600);
+        
+        Button btnSettings = createImageButton("settings.png");
+        Button btnShutdown = createImageButton("shutdown.png");
+
+        bottomGrid.add(btnSettings, 0, 0);
+        bottomGrid.add(btnShutdown, 1, 0);
+        
+        btnShutdown.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            primaryStage.close();
+            }
+        });
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -76,6 +85,7 @@ public class HUEbian extends Application {
             }
         }
         borderPane.setCenter(grid);
+        borderPane.setBottom(bottomGrid);
         primaryStage.show();
     }
     
@@ -91,7 +101,7 @@ public class HUEbian extends Application {
     
     private Button createImageButton(String filePath){
         Button btn = new Button();
-        Image image = new Image(filePath);
+        Image image = new Image(getClass().getResourceAsStream(filePath));
         double width = image.getWidth();
         double height = image.getHeight();
         btn.setMaxHeight(height);
@@ -99,31 +109,10 @@ public class HUEbian extends Application {
         btn.setMaxWidth(width);
         btn.setMinWidth(width);
         btn.setId("imageButton");
+        btn.setGraphic(new ImageView(image));
         return btn;
     }
-    /*
-    @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Vardagsrum");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Running HUEbian");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 800, 480);
-        
-        primaryStage.setTitle("HUEbian");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-*/
+
     /**
      * @param args the command line arguments
      */

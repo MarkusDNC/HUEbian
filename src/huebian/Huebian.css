@@ -47,6 +47,5 @@ and open the template in the editor.
 }
 
 #imageButton {
-    -fx-background-image:url("settings.png");
     -fx-background-color: transparent;
 }
